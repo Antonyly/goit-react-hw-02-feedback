@@ -73,11 +73,6 @@ select {
   font: inherit;
 }
 
-.root {
-  margin-top: 50px;
-  margin-bottom: 50px;
-}
-
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
