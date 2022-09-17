@@ -24,7 +24,7 @@ export class App extends Component {
   positivePercent = () => {
     const { Good, Bad, Neutral } = this.state
     let positivePercent = 0
-    const finalPositivePercentage = Math.round((Good / (Bad + Neutral + Good)) * 100)
+    const finalPositivePercentage = Math.floor((Good / (Bad + Neutral + Good)) * 100)
     if (finalPositivePercentage > 0) {
       positivePercent = finalPositivePercentage
     }
@@ -35,7 +35,6 @@ export class App extends Component {
     const { Good, Neutral, Bad } = this.state;
     const totalFinds = this.totalCount();
     const positivePercent = this.positivePercent();
-    const isFeedback = Good || Bad || Neutral;
     
     return (
 			<>
