@@ -1,30 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-import Profile from './Profile/Profile';
-import user from './Profile/user.json';
+import FeedBackOptions from './FeedBack/FeedBackOptions';
 
-import Statistics from './Statistics/Statistics';
-import data from './Statistics/data.json';
+export class App extends Component {
+  state = {
+    good: 0,
+    neutral: 0,
+    bad: 0
+  }
 
-import FriendList from './FriendList/FriendList';
-import friends from './FriendList/friends.json';
+  onLeaveFeedback = (e) => {
+    const count = e.target.name;
+    this.setState(prevState => ({
+      [count]: prevState[count] + 1
+    }))
+}
+  
+  render() {
+    const { good, neutral, bad } = this.state;
+    
+    return (
+			<>
 
-import TransactionHistory from './TransactionHistory/TransactionHistory';
-import transactions from './TransactionHistory/transactions.json';
-
-
-
-export const App = () => (
-  <>
-   <Profile
-      username={user.username}
-      tag={user.tag}
-      location={user.location}
-      avatar={user.avatar}
-      stats={user.stats}
-    />
-    <Statistics title="Upload stats" stats={data} />
-    <FriendList friends={friends} />
-    <TransactionHistory items={transactions} />
-  </>
-);
+        <FeedBackOptions options={Object.keys(this.state)} onLeaveFeedback={this.onLeaveFeedback} />
+        <button>{good}</button>
+        <button>{neutral}</button>
+        <button>{ bad }</button>
+			</>
+		);
+  }
+}
